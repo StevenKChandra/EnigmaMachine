@@ -93,9 +93,9 @@ export class Rotor {
 }
 
 export class EnigmaSetting {
-    private readonly reflector: Reflector;
-    private readonly rotor:  Array<Rotor>;
-    private readonly plugboard: Array<[string, string]>;
+    private readonly _reflector: Reflector;
+    private readonly _rotor:  Array<Rotor>;
+    private readonly _plugboard: Array<[string, string]>;
 
     /**
      * Make a new EnigmaSetting object
@@ -109,11 +109,11 @@ export class EnigmaSetting {
         }
         this.checkPlugboard(plugboard);
 
-        this.reflector = reflector;
-        this.rotor = new Array<Rotor> ();
-        rotor.forEach(value => this.rotor.push(new Rotor(value.rotorType, value.ringSetting, value.intitialSetting)));
-        this.plugboard = new Array<[string, string]> ();
-        plugboard.forEach(value => this.plugboard.push([value[0], value[1]]));
+        this._reflector = reflector;
+        this._rotor = new Array<Rotor> ();
+        rotor.forEach(value => this._rotor.push(value));
+        this._plugboard = new Array<[string, string]> ();
+        plugboard.forEach(value => this._plugboard.push([value[0], value[1]]));
     }
 
     private checkPlugboard(plugboard: Array<[string, string]>): void {
@@ -131,6 +131,22 @@ export class EnigmaSetting {
             set.add(connection[0]);
             set.add(connection[1]);
         }
+    }
+
+    public get reflector(): Reflector{
+        return this._reflector;
+    }
+
+    public get rotor(): Array<Rotor> {
+        let rotor: Array<Rotor>  = new Array<Rotor>  ()
+        this._rotor.forEach(value => rotor.push(value));
+        return rotor;
+    }
+
+    public get plugboard(): Array<[string, string]>{
+        let plugboard: Array<[string, string]> = new Array<[string, string]> ()
+        this._plugboard.forEach(value => plugboard.push([value[0], value[1]]));
+        return plugboard;
     }
 }
 

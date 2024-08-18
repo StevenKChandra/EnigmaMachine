@@ -5,9 +5,13 @@ import exp from 'node:constants';
 describe("Rotor", function() {
     /**
      *  Testing Strategy:
+     * 
+     *      test getter function on correct object
+     * 
      *      partition on ringSetting:
      *          alphabet, non alphabet
      *          length 1, length not 1
+     * 
      *      partition on initialSetting:
      *          alphabet, non alphabet
      *          length 1, length not 1
@@ -52,7 +56,7 @@ describe("EnigmaSetting", function() {
     /**
      *  Testing Strategy:
      * 
-     *      partition on reflector:
+     *      test getter functions on correct object
      *          
      *      partition on rotor:
      *          3 <= rotor.length <= 4, rotor.length < 3, rotor.length > 4
@@ -81,8 +85,12 @@ describe("EnigmaSetting", function() {
         "no duplicate character", function () {
         new EnigmaSetting(reflector, rotors.slice(1, 5), [["a", "b"], ["c", "d"]]);
     });
-    it("accepts plugboard.length = 10", function () {
-        new EnigmaSetting(reflector, rotors.slice(1, 4), [["a", "b"], ["c", "d"], ["e", "f"], ["g", "h"], ["i", "j"], ["k", "l"], ["m", "n"], ["o", "p"], ["q", "r"], ["s", "t"]]);
+    it("accepts plugboard.length = 10, " +
+        "getter functions working correctly",  function () {
+        const enigmaSetting: EnigmaSetting = new EnigmaSetting(reflector, rotors.slice(1, 4), [["a", "b"], ["c", "d"], ["e", "f"], ["g", "h"], ["i", "j"], ["k", "l"], ["m", "n"], ["o", "p"], ["q", "r"], ["s", "t"]]);
+        assert.deepStrictEqual(enigmaSetting.reflector, reflector, "getter function reflector returns wrong value");
+        assert.deepStrictEqual(enigmaSetting.rotor, rotors.slice(1, 4), "getter function plugboard returns wrong value");
+        assert.deepStrictEqual(enigmaSetting.plugboard, [["a", "b"], ["c", "d"], ["e", "f"], ["g", "h"], ["i", "j"], ["k", "l"], ["m", "n"], ["o", "p"], ["q", "r"], ["s", "t"]], "getter function plugboard returns wrong value");
     });
     it("rejects rotor.length < 3 ", function() {
         const expectedError: Error = new Error ("rotors.length must be 3 or 4");
