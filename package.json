@@ -1,0 +1,20 @@
+{
+  "name": "enigmamachine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "",
+    "test": "node node_modules/mocha/bin/mocha build/test/*js --reporter spec"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.4.0",
+    "mocha": "^10.7.3",
+    "node-ts": "^6.1.2",
+    "typescript": "^5.5.4"
+  }
+}
